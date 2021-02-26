@@ -3,6 +3,8 @@ package com.javatechie.reg.service.api;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import com.javatechie.reg.service.api.dao.UserRepository;
@@ -20,10 +22,13 @@ public class RegistrationServiceApplication {
     private UserRepository repository;
 
     @PostMapping("/register")
-    public String register(@RequestBody User user) {
+    public ResponseEntity register(@RequestBody User user) {
         repository.save(user);
+
+        return new ResponseEntity<>("success",
+                HttpStatus.OK);
         
-        return "Hi " + user.getName() + " your Registration process successfully completed";
+       // return "Hi " + user.getName() + " your Registration process successfully completed";
     }
     
     @GetMapping("/getAllUsers")
