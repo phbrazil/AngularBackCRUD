@@ -9,6 +9,7 @@ import com.javatechie.reg.service.api.dao.UserRepository;
 import com.javatechie.reg.service.api.model.User;
 
 import java.util.List;
+import java.util.Optional;
 
 @SpringBootApplication
 @RestController
@@ -31,8 +32,24 @@ public class RegistrationServiceApplication {
     }
 
     @GetMapping("/findUser/{email}")
-    public List<User> findUser(@PathVariable String email) {
+    public List<User> findUserEmail(@PathVariable String email) {
         return repository.findByEmail(email);
+    }
+
+    @GetMapping("/findUserCity/{city}")
+    public List<User> findUserCity(@PathVariable String city) {
+        return repository.findByCity(city);
+    }
+
+    @GetMapping("/findUserExperience/{experience}")
+    public List<User> findUserExperience(@PathVariable int experience) {
+        return repository.findByExperience(experience);
+    }
+
+    @GetMapping("/findUserID/{id}")
+    public Optional<User> findUserByID(@PathVariable Integer id) {
+        return repository.findById(id);
+
     }
 
     @DeleteMapping("/cancel/{id}")
