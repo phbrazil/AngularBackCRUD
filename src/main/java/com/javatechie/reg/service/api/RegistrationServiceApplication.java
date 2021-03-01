@@ -1,5 +1,7 @@
 package com.javatechie.reg.service.api;
 
+import com.javatechie.reg.service.api.dao.ClientRepository;
+import com.javatechie.reg.service.api.model.Cliente;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -21,19 +23,33 @@ public class RegistrationServiceApplication {
     @Autowired
     private UserRepository repository;
 
-    @PostMapping("/register")
-    public ResponseEntity register(@RequestBody User user) {
-        repository.save(user);
+    @Autowired
+    private ClientRepository repositoryClient;
 
-        return new ResponseEntity<>("success",
-                HttpStatus.OK);
+    @PostMapping("/registerUser")
+    public User register(@RequestBody User user) {
+       return repository.save(user);
+
         
        // return "Hi " + user.getName() + " your Registration process successfully completed";
+    }
+
+    @PostMapping("/registerClient")
+    public Cliente registerClient(@RequestBody Cliente cliente) {
+        return repositoryClient.save(cliente);
+
+
+        // return "Hi " + user.getName() + " your Registration process successfully completed";
     }
     
     @GetMapping("/getAllUsers")
     public List<User> findAllUsers() {
         return repository.findAll();
+    }
+
+    @GetMapping("/getAllClients")
+    public List<Cliente> findAllClients() {
+        return repositoryClient.findAll();
     }
 
     @GetMapping("/findUser/{email}")
