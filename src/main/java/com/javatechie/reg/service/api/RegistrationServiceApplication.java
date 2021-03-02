@@ -13,6 +13,7 @@ import com.javatechie.reg.service.api.dao.UserRepository;
 import com.javatechie.reg.service.api.model.User;
 import org.springframework.web.server.ResponseStatusException;
 
+import javax.validation.Valid;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
@@ -35,8 +36,9 @@ public class RegistrationServiceApplication {
        // return "Hi " + user.getName() + " your Registration process successfully completed";
     }
 
+    //@valid serve para validar o bean de internacionalizacao de mensagens
     @PostMapping("/registerClient")
-    public Cliente registerClient(@RequestBody Cliente cliente) {
+    public Cliente registerClient(@RequestBody @Valid Cliente cliente) {
 
         SimpleDateFormat formatter= new SimpleDateFormat("dd-MM-yyyy");
 

@@ -23,7 +23,7 @@ public class Cliente {
     private int id;
 
     @Column(nullable = false, length = 150)
-    @NotEmpty
+    @NotEmpty(message = "{campo.nome.obrigatorio}")
     private String name;
 
     @Column(nullable = false, length = 150)
@@ -37,7 +37,7 @@ public class Cliente {
 
     @Column(nullable = false, length = 11)
     @NotNull
-    @CPF
+    @CPF(message = "{campo.cpf.invalido}")
     private String cpf;
 
 
