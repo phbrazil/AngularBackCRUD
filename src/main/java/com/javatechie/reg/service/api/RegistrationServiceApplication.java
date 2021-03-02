@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.*;
 
 import com.javatechie.reg.service.api.dao.UserRepository;
 import com.javatechie.reg.service.api.model.User;
+import org.springframework.web.server.ResponseStatusException;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -77,8 +78,9 @@ public class RegistrationServiceApplication {
     }
 
     @GetMapping("/findUserID/{id}")
-    public Optional<User> findUserByID(@PathVariable Integer id) {
-        return repository.findById(id);
+    public User findUserByID(@PathVariable Integer id) {
+        return repository.findById(id)
+                .orElseThrow(()->new ResponseStatusException(HttpStatus.NOT_FOUND));
 
     }
 
