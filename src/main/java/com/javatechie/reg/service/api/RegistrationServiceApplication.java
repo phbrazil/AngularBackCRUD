@@ -12,6 +12,8 @@ import org.springframework.web.bind.annotation.*;
 import com.javatechie.reg.service.api.dao.UserRepository;
 import com.javatechie.reg.service.api.model.User;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 
@@ -27,15 +29,22 @@ public class RegistrationServiceApplication {
     private ClientRepository repositoryClient;
 
     @PostMapping("/registerUser")
-    public User register(@RequestBody User user) {
+    public User registerUser(@RequestBody User user) {
        return repository.save(user);
-
-        
        // return "Hi " + user.getName() + " your Registration process successfully completed";
     }
 
     @PostMapping("/registerClient")
     public Cliente registerClient(@RequestBody Cliente cliente) {
+
+        SimpleDateFormat formatter= new SimpleDateFormat("dd-MM-yyyy");
+
+        Date date = new Date(System.currentTimeMillis());
+
+        cliente.setDataCadastro(date);
+
+        System.out.println(formatter.format(cliente.getDataCadastro()));
+
         return repositoryClient.save(cliente);
 
 
