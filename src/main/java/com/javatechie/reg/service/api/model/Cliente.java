@@ -4,8 +4,11 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.ToString;
+import org.hibernate.validator.constraints.br.CPF;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
 import java.util.Date;
 
 @Entity
@@ -20,6 +23,7 @@ public class Cliente {
     private int id;
 
     @Column(nullable = false, length = 150)
+    @NotEmpty
     private String name;
 
     @Column(nullable = false, length = 150)
@@ -30,6 +34,11 @@ public class Cliente {
 
     @Column
     private Date dataCadastro;
+
+    @Column(nullable = false, length = 11)
+    @NotNull
+    @CPF
+    private String cpf;
 
 
 }
