@@ -84,6 +84,13 @@ public class RegistrationServiceApplication {
 
     }
 
+    @GetMapping("/findClientID/{id}")
+    public Cliente findClientByID(@PathVariable Integer id) {
+        return repositoryClient.findById(id)
+                .orElseThrow(()->new ResponseStatusException(HttpStatus.NOT_FOUND));
+
+    }
+
     @DeleteMapping("/cancel/{id}")
     public List<User> cancelRegistration(@PathVariable int id) {
         repository.deleteById(id);
