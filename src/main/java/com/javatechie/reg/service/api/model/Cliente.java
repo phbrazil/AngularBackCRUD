@@ -16,7 +16,7 @@ import java.util.Date;
 @AllArgsConstructor
 @NoArgsConstructor
 @ToString
-@Table(name="cliente")
+@Table(name = "cliente")
 public class Cliente {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -26,7 +26,7 @@ public class Cliente {
     @NotEmpty(message = "{campo.nome.obrigatorio}")
     private String name;
 
-    @Column(nullable = false, length = 150)
+    @Column(nullable = false, length = 150, unique = true)
     private String email;
 
     @Column(nullable = false, length = 150)
@@ -35,7 +35,7 @@ public class Cliente {
     @Column
     private Date dataCadastro;
 
-    @Column(nullable = false, length = 11)
+    @Column(nullable = false, length = 11, unique = true)
     @NotNull
     @CPF(message = "{campo.cpf.invalido}")
     private String cpf;
