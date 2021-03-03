@@ -15,7 +15,7 @@ import javax.persistence.Table;
 @AllArgsConstructor
 @NoArgsConstructor
 @ToString
-@Table(name="USER_REG_TBL")
+@Table(name="user")
 public class User {
     @Id
     @GeneratedValue
