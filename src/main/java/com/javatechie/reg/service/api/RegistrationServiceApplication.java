@@ -53,7 +53,9 @@ public class RegistrationServiceApplication {
         if (repositoryClient.existsByEmail(cliente.getEmail())) {
             throw new EmailExistsException("Email já existe");
             
-        } else {
+        } else if(repositoryClient.existsByCpf(cliente.getCpf())) {
+            throw new EmailExistsException("CPF já existe");
+        }else {
             return repositoryClient.save(cliente);
         }
 

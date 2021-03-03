@@ -9,9 +9,9 @@ package com.javatechie.reg.service.api.exceptions;
  *
  * @author Paulo
  */
-public class EmailExistsException extends Exception {
+public class CPFExistsException extends Exception {
 
-    public EmailExistsException(String message) {
+    public CPFExistsException(String message) {
         super(message);
     }
 }

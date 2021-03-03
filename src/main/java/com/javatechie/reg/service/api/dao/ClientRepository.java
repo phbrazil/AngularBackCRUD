@@ -8,6 +8,7 @@ import java.util.List;
 
 public interface ClientRepository extends JpaRepository<Cliente,Integer> {
       Boolean existsByEmail(String email);
+      Boolean existsByCpf(String cpf);
 
 }
 
