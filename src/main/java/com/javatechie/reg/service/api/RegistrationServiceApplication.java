@@ -77,6 +77,11 @@ public class RegistrationServiceApplication {
         return repository.findByEmail(email);
     }
 
+    @GetMapping("/findClient/{email}")
+    public List<Cliente> findClientEmail(@PathVariable String email) {
+        return repositoryClient.findByEmail(email);
+    }
+
     @GetMapping("/findUserCity/{city}")
     public List<User> findUserCity(@PathVariable String city) {
         return repository.findByCity(city);
