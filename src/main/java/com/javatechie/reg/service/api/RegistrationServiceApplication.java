@@ -43,12 +43,6 @@ public class RegistrationServiceApplication {
     @PostMapping("/registerClient")
     public Cliente registerClient(@RequestBody @Valid Cliente cliente) throws EmailExistsException {
 
-
-        //REPLACE DOTS CPF
-
-        cliente.setCpf(cliente.getCpf().replace(".","")
-                .replace("/","")
-        .replace("-",""));
         SimpleDateFormat formatter = new SimpleDateFormat("dd-MM-yyyy");
 
         Date date = new Date(System.currentTimeMillis());
@@ -107,10 +101,17 @@ public class RegistrationServiceApplication {
 
     }
 
-    @DeleteMapping("/cancel/{id}")
-    public List<User> cancelRegistration(@PathVariable int id) {
+    @DeleteMapping("/deleteUser/{id}")
+    public List<User> deleteUser(@PathVariable int id) {
         repository.deleteById(id);
         return repository.findAll();
+    }
+
+    @DeleteMapping("/deleteClient/{id}")
+    public List<Cliente> deleteClient(@PathVariable int id) {
+        System.out.println("to aqui man");
+        repositoryClient.deleteById(id);
+        return repositoryClient.findAll();
     }
 
     public static void main(String[] args) {
