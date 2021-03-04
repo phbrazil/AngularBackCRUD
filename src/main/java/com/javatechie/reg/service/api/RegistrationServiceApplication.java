@@ -43,6 +43,12 @@ public class RegistrationServiceApplication {
     @PostMapping("/registerClient")
     public Cliente registerClient(@RequestBody @Valid Cliente cliente) throws EmailExistsException {
 
+
+        //REPLACE DOTS CPF
+
+        cliente.setCpf(cliente.getCpf().replace(".","")
+                .replace("/","")
+        .replace("-",""));
         SimpleDateFormat formatter = new SimpleDateFormat("dd-MM-yyyy");
 
         Date date = new Date(System.currentTimeMillis());
