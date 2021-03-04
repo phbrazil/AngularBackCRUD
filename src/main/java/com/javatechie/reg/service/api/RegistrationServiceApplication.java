@@ -109,7 +109,6 @@ public class RegistrationServiceApplication {
 
     @DeleteMapping("/deleteClient/{id}")
     public List<Cliente> deleteClient(@PathVariable int id) {
-        System.out.println("to aqui man");
         repositoryClient.deleteById(id);
         return repositoryClient.findAll();
     }
