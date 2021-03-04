@@ -82,9 +82,9 @@ public class RegistrationServiceApplication {
         return repository.findByCity(city);
     }
 
-    @GetMapping("/findUserExperience/{experience}")
-    public List<User> findUserExperience(@PathVariable int experience) {
-        return repository.findByExperience(experience);
+    @GetMapping("/findClientCPF/{cpf}")
+    public List<Cliente> findClientCPF(@PathVariable String cpf) {
+        return repositoryClient.findByCpf(cpf);
     }
 
     @GetMapping("/findUserID/{id}")
