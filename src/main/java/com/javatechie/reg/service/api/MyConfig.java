@@ -14,12 +14,11 @@ import org.springframework.context.annotation.Bean;
  *
  * @author paulo.h.bezerra
  */
-@Development
+@Production
 public class MyConfig {
     @Bean
     public CommandLineRunner executar(){
         return args ->{
-            System.out.println("rodando config dev");
         };
     }
 

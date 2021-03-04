@@ -10,6 +10,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import com.javatechie.reg.service.api.dao.UserRepository;
+import com.javatechie.reg.service.api.exceptions.EmailExistsException;
 import com.javatechie.reg.service.api.model.User;
 import org.springframework.web.server.ResponseStatusException;
 
@@ -18,11 +19,13 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
 import java.util.Optional;
+import org.springframework.boot.web.servlet.support.SpringBootServletInitializer;
 
 @SpringBootApplication
 @RestController
 @CrossOrigin(origins = "*")
 public class RegistrationServiceApplication {
+//public class RegistrationServiceApplication extends SpringBootServletInitializer{
 
     @Autowired
     private UserRepository repository;
@@ -32,28 +35,33 @@ public class RegistrationServiceApplication {
 
     @PostMapping("/registerUser")
     public User registerUser(@RequestBody User user) {
-       return repository.save(user);
-       // return "Hi " + user.getName() + " your Registration process successfully completed";
+        return repository.save(user);
+        // return "Hi " + user.getName() + " your Registration process successfully completed";
     }
 
     //@valid serve para validar o bean de internacionalizacao de mensagens
     @PostMapping("/registerClient")
-    public Cliente registerClient(@RequestBody @Valid Cliente cliente) {
+    public Cliente registerClient(@RequestBody @Valid Cliente cliente) throws EmailExistsException {
 
-        SimpleDateFormat formatter= new SimpleDateFormat("dd-MM-yyyy");
+        SimpleDateFormat formatter = new SimpleDateFormat("dd-MM-yyyy");
 
         Date date = new Date(System.currentTimeMillis());
 
         cliente.setDataCadastro(date);
 
-        System.out.println(formatter.format(cliente.getDataCadastro()));
-
-        return repositoryClient.save(cliente);
-
+        //System.out.println(formatter.format(cliente.getDataCadastro()));
+        if (repositoryClient.existsByEmail(cliente.getEmail())) {
+            throw new EmailExistsException("Email já existe");
+            
+        } else if(repositoryClient.existsByCpf(cliente.getCpf())) {
+            throw new EmailExistsException("CPF já existe");
+        }else {
+            return repositoryClient.save(cliente);
+        }
 
         // return "Hi " + user.getName() + " your Registration process successfully completed";
     }
-    
+
     @GetMapping("/getAllUsers")
     public List<User> findAllUsers() {
         return repository.findAll();
@@ -82,14 +90,14 @@ public class RegistrationServiceApplication {
     @GetMapping("/findUserID/{id}")
     public User findUserByID(@PathVariable Integer id) {
         return repository.findById(id)
-                .orElseThrow(()->new ResponseStatusException(HttpStatus.NOT_FOUND));
+                .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND));
 
     }
 
     @GetMapping("/findClientID/{id}")
     public Cliente findClientByID(@PathVariable Integer id) {
         return repositoryClient.findById(id)
-                .orElseThrow(()->new ResponseStatusException(HttpStatus.NOT_FOUND));
+                .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND));
 
     }
 
@@ -104,5 +112,3 @@ public class RegistrationServiceApplication {
     }
 
 }
-
-
