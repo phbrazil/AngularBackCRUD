@@ -77,14 +77,19 @@ public class RegistrationServiceApplication {
         return repository.findByEmail(email);
     }
 
+    @GetMapping("/findClient/{email}")
+    public List<Cliente> findClientEmail(@PathVariable String email) {
+        return repositoryClient.findByEmail(email);
+    }
+
     @GetMapping("/findUserCity/{city}")
     public List<User> findUserCity(@PathVariable String city) {
         return repository.findByCity(city);
     }
 
-    @GetMapping("/findUserExperience/{experience}")
-    public List<User> findUserExperience(@PathVariable int experience) {
-        return repository.findByExperience(experience);
+    @GetMapping("/findClientCPF/{cpf}")
+    public List<Cliente> findClientCPF(@PathVariable String cpf) {
+        return repositoryClient.findByCpf(cpf);
     }
 
     @GetMapping("/findUserID/{id}")
@@ -101,10 +106,16 @@ public class RegistrationServiceApplication {
 
     }
 
-    @DeleteMapping("/cancel/{id}")
-    public List<User> cancelRegistration(@PathVariable int id) {
+    @DeleteMapping("/deleteUser/{id}")
+    public List<User> deleteUser(@PathVariable int id) {
         repository.deleteById(id);
         return repository.findAll();
+    }
+
+    @DeleteMapping("/deleteClient/{id}")
+    public List<Cliente> deleteClient(@PathVariable int id) {
+        repositoryClient.deleteById(id);
+        return repositoryClient.findAll();
     }
 
     public static void main(String[] args) {
