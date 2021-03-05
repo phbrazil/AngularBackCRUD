@@ -2,7 +2,11 @@
 Test set: com.javatechie.reg.service.api.RegistrationServiceApplicationTests
 -------------------------------------------------------------------------------
 <<<<<<< HEAD
+<<<<<<< HEAD
 Tests run: 1, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 14.795 s - in com.javatechie.reg.service.api.RegistrationServiceApplicationTests
 =======
 Tests run: 1, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 11.613 s - in com.javatechie.reg.service.api.RegistrationServiceApplicationTests
 >>>>>>> b271bf3d081e298de211395df4c7f0a952d0f164
+=======
+Tests run: 1, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 10.098 s - in com.javatechie.reg.service.api.RegistrationServiceApplicationTests
+>>>>>>> dddeaa54b184ef6c4ac83822c9298e9492cacb23
