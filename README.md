@@ -33,4 +33,3 @@ http://34.71.7.57:8080/sistema-vendas/findUserID/aquivaioID
 
 http://34.71.7.57:8080/sistema-vendas/deleteUser/aquivaioID
 
->>>>>>> 9ae94afbd194223072982caaba0b974a31b0a673
