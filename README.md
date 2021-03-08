@@ -8,9 +8,14 @@ Passar os parametros abaixo via Postman (recomendo usar um gerador de CPF como o
 
 {   
 "name": "nome",
+
 "email": "email",
+
 "city": "cidade",
+
 "cpf": "cpf válido"
+
+}
 
 # MÉTODO GET PESQUISAR CLIENTE PELO CPF 
 
