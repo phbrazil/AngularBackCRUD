@@ -49,15 +49,12 @@ public class RegistrationServiceApplication {
 
        Optional<Cliente> client = repositoryClient.findById(id);
 
-        System.out.println(client);
-
         RestTemplate restTemplate = new RestTemplate();
         String fooResourceUrl
                 = "http://www.cyberoficina.com.br:8080/sistema-vendas/findClientID";
         ResponseEntity<String> response
                 = restTemplate.getForEntity(fooResourceUrl + "/10", String.class);
 
-        System.out.println(response+"++++");
         return response;
 
     }
