@@ -1,10 +1,14 @@
 package com.javatechie.reg.service.api;
 
+import ch.qos.logback.core.net.server.Client;
 import com.javatechie.reg.service.api.dao.ClientRepository;
+import com.javatechie.reg.service.api.dto.Foo;
 import com.javatechie.reg.service.api.model.Cliente;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.http.HttpEntity;
+import org.springframework.http.HttpMethod;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -12,6 +16,7 @@ import org.springframework.web.bind.annotation.*;
 import com.javatechie.reg.service.api.dao.UserRepository;
 import com.javatechie.reg.service.api.exceptions.EmailExistsException;
 import com.javatechie.reg.service.api.model.User;
+import org.springframework.web.client.RestTemplate;
 import org.springframework.web.server.ResponseStatusException;
 
 import javax.validation.Valid;
@@ -37,6 +42,24 @@ public class RegistrationServiceApplication {
     public User registerUser(@RequestBody User user) {
         return repository.save(user);
         // return "Hi " + user.getName() + " your Registration process successfully completed";
+    }
+
+    @GetMapping("/restTemplate/getClient/{id}")
+    public ResponseEntity getCEP(@PathVariable Integer id) {
+
+       Optional<Cliente> client = repositoryClient.findById(id);
+
+        System.out.println(client);
+
+        RestTemplate restTemplate = new RestTemplate();
+        String fooResourceUrl
+                = "http://www.cyberoficina.com.br:8080/sistema-vendas/findClientID";
+        ResponseEntity<String> response
+                = restTemplate.getForEntity(fooResourceUrl + "/10", String.class);
+
+        System.out.println(response+"++++");
+        return response;
+
     }
 
     //@valid serve para validar o bean de internacionalizacao de mensagens
